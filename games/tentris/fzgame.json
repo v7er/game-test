@@ -1,0 +1,19 @@
+{
+  "name": "Tentris",
+  "slug": "tentris",
+  "version": 1,
+  "description": "Ten-column falling-block puzzle. Clear lines, climb levels, beat your score.",
+  "entry": {
+    "game": "game/index.html",
+    "editor": "editor/index.html",
+    "handler": "handler/index.js"
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "startLevel": { "type": "number", "default": 1, "minimum": 1, "maximum": 15 },
+      "accent": { "type": "string", "default": "#ffd43b" },
+      "showGhost": { "type": "boolean", "default": true }
+    }
+  }
+}

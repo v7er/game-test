@@ -1,0 +1,127 @@
+:root {
+  color-scheme: dark;
+  --bg: #1a1612;
+  --panel: #241f1a;
+  --ink: #f4eee4;
+  --muted: #cbbba6;
+  --accent: #ffd43b;
+  --line: #3a332c;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#app {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: 8px;
+  padding: 12px 12px 16px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+#pause {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.hud div {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+.hud span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hud strong { font-size: 18px; }
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr 88px;
+  gap: 10px;
+  min-height: 0;
+  align-items: stretch;
+}
+#well {
+  width: 100%;
+  height: 100%;
+  background: #120f0c;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: block;
+}
+aside {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+aside span {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+#next { width: 100%; height: auto; display: block; }
+
+#status {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.pad button {
+  height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #1a1612;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pad button:active { filter: brightness(0.9); }

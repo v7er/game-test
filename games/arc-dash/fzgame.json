@@ -1,0 +1,19 @@
+{
+  "name": "Arc Dash",
+  "slug": "arc-dash",
+  "version": 1,
+  "description": "Auto-running cube. Tap to jump, ride the beat, don't clip a spike. Original Phaser runner in the Geometry Dash cube-mode mold.",
+  "entry": {
+    "game": "game/index.html",
+    "editor": "editor/index.html",
+    "handler": "handler/index.js"
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "speed": { "type": "number", "default": 1, "minimum": 0.7, "maximum": 1.6 },
+      "accent": { "type": "string", "default": "#ffd43b" },
+      "mute": { "type": "boolean", "default": false }
+    }
+  }
+}

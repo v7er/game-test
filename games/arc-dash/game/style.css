@@ -1,0 +1,52 @@
+:root {
+  color-scheme: dark;
+  --bg: #1a1612;
+  --ink: #f4eee4;
+  --muted: #cbbba6;
+  --accent: #ffd43b;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  user-select: none;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 6px;
+  padding: 10px 10px 12px;
+}
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+h1 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+#stats { margin: 0; font-size: 13px; color: var(--muted); }
+#mount {
+  min-height: 0;
+  border: 1px solid #3a332c;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #120f0c;
+}
+#status {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Tentris</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Tentris</h1>
+        <button id="pause" type="button" aria-label="Pause">II</button>
+      </header>
+      <section class="hud">
+        <div><span>Score</span><strong id="score">0</strong></div>
+        <div><span>Lines</span><strong id="lines">0</strong></div>
+        <div><span>Level</span><strong id="level">1</strong></div>
+      </section>
+      <div class="stage">
+        <canvas id="well" width="200" height="400"></canvas>
+        <aside>
+          <span>Next</span>
+          <canvas id="next" width="80" height="80"></canvas>
+        </aside>
+      </div>
+      <p id="status">Loading…</p>
+      <div class="pad">
+        <button type="button" data-hold="left" aria-label="Left">◀</button>
+        <button type="button" data-hold="right" aria-label="Right">▶</button>
+        <button type="button" data-tap="rotate" aria-label="Rotate">↻</button>
+        <button type="button" data-hold="down" aria-label="Soft drop">▼</button>
+        <button type="button" data-tap="drop" aria-label="Hard drop">⬇</button>
+      </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

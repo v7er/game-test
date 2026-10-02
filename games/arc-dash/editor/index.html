@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arc Dash editor</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #1a1612;
+        color: #f4eee4;
+      }
+      h1 { font-size: 18px; margin: 0 0 16px; letter-spacing: 0.12em; text-transform: uppercase; }
+      label { display: block; margin: 14px 0 6px; font-size: 13px; color: #cbbba6; }
+      input[type='number'], input[type='color'] {
+        width: 100%;
+        max-width: 280px;
+        padding: 8px;
+        border: 1px solid #3a332c;
+        border-radius: 8px;
+        background: #241f1a;
+        color: inherit;
+      }
+      input[type='color'] { height: 40px; padding: 4px; }
+      .row { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+      button {
+        margin-top: 20px;
+        padding: 10px 18px;
+        border: 0;
+        border-radius: 10px;
+        background: #ffd43b;
+        color: #1a1612;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Arc Dash</h1>
+    <form id="form">
+      <label for="speed">Speed</label>
+      <input id="speed" name="speed" type="number" min="0.7" max="1.6" step="0.1" value="1" />
+      <label for="accent">Accent</label>
+      <input id="accent" name="accent" type="color" value="#ffd43b" />
+      <div class="row">
+        <input id="mute" name="mute" type="checkbox" />
+        <label for="mute" style="margin: 0">Mute beat</label>
+      </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+    <script type="module">
+      const form = document.getElementById('form')
+      const params = new URLSearchParams(location.search)
+      const kitUrl = params.get('kit') || '../game/vendor/kit.js'
+
+      const apply = (config = {}) => {
+        if (config.speed != null) form.speed.value = config.speed
+        if (config.accent) form.accent.value = config.accent
+        if (typeof config.mute === 'boolean') form.mute.checked = config.mute
+      }
+
+      let postEditorSave = (config) => {
+        parent.postMessage({ source: 'fzgame-editor', type: 'save', config }, '*')
+      }
+      try {
+        const kit = await import(kitUrl)
+        if (kit.postEditorSave) postEditorSave = kit.postEditorSave
+        if (kit.onHostInit) kit.onHostInit((payload) => apply(payload.config || {}))
+      } catch {
+        /* vendor kit optional in source tree */
+      }
+
+      window.addEventListener('message', (event) => {
+        const data = event.data
+        if (!data || data.source !== 'fzgame-host' || data.type !== 'init') return
+        apply(data.config || {})
+      })
+      parent.postMessage({ source: 'fzgame-editor', type: 'ready' }, '*')
+      form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        postEditorSave({
+          speed: Number(form.speed.value),
+          accent: form.accent.value,
+          mute: form.mute.checked,
+        })
+      })
+    </script>
+  </body>
+</html>

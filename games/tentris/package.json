@@ -1,0 +1,10 @@
+{
+  "name": "@fzgame-arcade/tentris",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node ../../bin/fzgame.mjs dev --port 3400",
+    "build": "node ../../bin/fzgame.mjs build",
+    "publish-game": "node ../../bin/fzgame.mjs publish"
+  }
+}

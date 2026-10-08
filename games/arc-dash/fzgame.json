@@ -1,19 +1,68 @@
 {
-  "name": "Arc Dash",
-  "slug": "arc-dash",
-  "version": 1,
-  "description": "Auto-running cube. Tap to jump, ride the beat, don't clip a spike. Original Phaser runner in the Geometry Dash cube-mode mold.",
+  "info": {
+    "name": "Arc Dash",
+    "slug": "arc-dash",
+    "version": 1,
+    "image": "",
+    "description": "Auto-running cube. Tap to jump, ride the beat, don't clip a spike. Original Phaser runner in the Geometry Dash cube-mode mold.",
+    "author": "FZGame",
+    "git_url": "https://github.com/fzgame/fzgame-arcade"
+  },
   "entry": {
     "game": "game/index.html",
     "editor": "editor/index.html",
     "handler": "handler/index.js"
   },
-  "configSchema": {
+  "formSchema": {
+    "type": "object",
+    "title": "Arc Dash",
+    "properties": {
+      "speed": {
+        "type": "number",
+        "title": "Speed",
+        "default": 1,
+        "minimum": 0.7,
+        "maximum": 1.6
+      },
+      "accent": {
+        "type": "string",
+        "title": "Accent",
+        "default": "#ffd43b"
+      },
+      "mute": {
+        "type": "boolean",
+        "title": "Mute",
+        "default": false
+      }
+    }
+  },
+  "formUiSchema": {
+    "accent": { "ui:widget": "color" }
+  },
+  "resultSchema": {
+    "type": "object",
+    "required": ["score", "died"],
+    "properties": {
+      "score": { "type": "integer", "minimum": 0 },
+      "distance": { "type": "number", "minimum": 0 },
+      "died": { "type": "boolean" }
+    }
+  },
+  "snapshotSchema": {
     "type": "object",
     "properties": {
-      "speed": { "type": "number", "default": 1, "minimum": 0.7, "maximum": 1.6 },
-      "accent": { "type": "string", "default": "#ffd43b" },
-      "mute": { "type": "boolean", "default": false }
+      "x": { "type": "number" },
+      "y": { "type": "number" },
+      "alive": { "type": "boolean", "default": true },
+      "score": { "type": "integer", "minimum": 0, "default": 0 }
+    }
+  },
+  "gameDataSchema": {
+    "type": "object",
+    "properties": {
+      "speed": { "type": "number" },
+      "accent": { "type": "string" },
+      "mute": { "type": "boolean" }
     }
   }
 }

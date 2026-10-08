@@ -1,19 +1,71 @@
 {
-  "name": "Tentris",
-  "slug": "tentris",
-  "version": 1,
-  "description": "Ten-column falling-block puzzle. Clear lines, climb levels, beat your score.",
+  "info": {
+    "name": "Tentris",
+    "slug": "tentris",
+    "version": 1,
+    "image": "",
+    "description": "Ten-column falling-block puzzle. Clear lines, climb levels, beat your score.",
+    "author": "FZGame",
+    "git_url": "https://github.com/fzgame/fzgame-arcade"
+  },
   "entry": {
     "game": "game/index.html",
     "editor": "editor/index.html",
     "handler": "handler/index.js"
   },
-  "configSchema": {
+  "formSchema": {
+    "type": "object",
+    "title": "Tentris",
+    "properties": {
+      "startLevel": {
+        "type": "integer",
+        "title": "Start level",
+        "default": 1,
+        "minimum": 1,
+        "maximum": 15
+      },
+      "accent": {
+        "type": "string",
+        "title": "Accent",
+        "default": "#ffd43b"
+      },
+      "showGhost": {
+        "type": "boolean",
+        "title": "Show ghost",
+        "default": true
+      }
+    }
+  },
+  "formUiSchema": {
+    "accent": { "ui:widget": "color" }
+  },
+  "resultSchema": {
+    "type": "object",
+    "required": ["score", "lines", "level"],
+    "properties": {
+      "score": { "type": "integer", "minimum": 0 },
+      "lines": { "type": "integer", "minimum": 0 },
+      "level": { "type": "integer", "minimum": 1 }
+    }
+  },
+  "snapshotSchema": {
     "type": "object",
     "properties": {
-      "startLevel": { "type": "number", "default": 1, "minimum": 1, "maximum": 15 },
-      "accent": { "type": "string", "default": "#ffd43b" },
-      "showGhost": { "type": "boolean", "default": true }
+      "score": { "type": "integer", "minimum": 0, "default": 0 },
+      "lines": { "type": "integer", "minimum": 0, "default": 0 },
+      "level": { "type": "integer", "minimum": 1, "default": 1 },
+      "board": {
+        "type": "array",
+        "items": { "type": "array", "items": { "type": "integer" } }
+      }
+    }
+  },
+  "gameDataSchema": {
+    "type": "object",
+    "properties": {
+      "startLevel": { "type": "integer" },
+      "accent": { "type": "string" },
+      "showGhost": { "type": "boolean" }
     }
   }
 }
